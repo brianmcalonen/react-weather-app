@@ -2,7 +2,6 @@ import React from 'react';
 
 class Forecast extends React.Component {
   render() {
-    var myDate = new Date( this.props.date *1000);
 
     const forecastStyle = {
       'boxShadow': '0 4px 8px 0 rgba(0,0,0,0.2)',
@@ -18,8 +17,9 @@ class Forecast extends React.Component {
     return(
       <div style={forecastStyle}>
         <h3>Forecast Component</h3>
-        <p>Date: {myDate.toGMTString()}</p>
+        <p>Date: {this.props.date}</p>
         <p>Temperature: {this.props.temp}</p>
+        <p>Type: {this.props.type}</p>
       </div>
     )
   }
