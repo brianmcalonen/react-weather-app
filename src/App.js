@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Titles from './components/Titles';
-import Weather from './components/Weather';
-import Forecast from './components/Forecast';
+import Titles from "./components/Titles";
+import Weather from "./components/Weather";
+import Forecast from "./components/Forecast";
 
 const apiKey = "02ee64e1f88918399ceccdea9f8b543b";
 
@@ -34,27 +34,31 @@ class App extends Component {
     temp3: undefined,
     temp4: undefined,
     temp5: undefined
-  }
+  };
 
-  getLocation = async (e) => {
+  getLocation = async e => {
     e.preventDefault();
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          this.setState({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          })
-          console.log("Latitude: " + position.coords.latitude);
-          console.log("Longitude: " + position.coords.longitude);
+      navigator.geolocation.getCurrentPosition(position => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
         });
+        console.log("Latitude: " + position.coords.latitude);
+        console.log("Longitude: " + position.coords.longitude);
+      });
     } else {
-        alert("Geolocation is not supported by this browser.");
+      alert("Geolocation is not supported by this browser.");
     }
-  }
+  };
 
-  getWeather = async (e) => {
+  getWeather = async e => {
     e.preventDefault();
-    const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=${apiKey}&units=imperial`);
+    const apiCall = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${
+        this.state.latitude
+      }&lon=${this.state.longitude}&appid=${apiKey}&units=imperial`
+    );
     const data = await apiCall.json();
     console.log(data);
     this.setState({
@@ -84,13 +88,15 @@ class App extends Component {
       type2: data.list[16].weather[0].main,
       type3: data.list[24].weather[0].main,
       type4: data.list[32].weather[0].main,
-      type5: data.list[39].weather[0].main,
-    })
-  }
-
-
+      type5: data.list[39].weather[0].main
+    });
+  };
 
   render() {
+    const containerStyle = {
+      display: "flex",
+      justifyContent: "space-between"
+    };
     return (
       <div>
         <Titles />
@@ -105,27 +111,33 @@ class App extends Component {
           type={this.state.type}
           humidity={this.state.humidity}
           wind={this.state.wind}
-          />
-        <Forecast
+        />
+        {/* <Forecast
           date={this.state.date1}
           temp={this.state.temp1}
-          type={this.state.type1} />
-        <Forecast
-          date={this.state.date2}
-          temp={this.state.temp2}
-          type={this.state.type2} />
-        <Forecast
-          date={this.state.date3}
-          temp={this.state.temp3}
-          type={this.state.type3} />
-        <Forecast
-          date={this.state.date4}
-          temp={this.state.temp4}
-          type={this.state.type4} />
-        <Forecast
-          date={this.state.date5}
-          temp={this.state.temp5}
-          type={this.state.type5} />
+          type={this.state.type1} /> */}
+        <div className="container" style={containerStyle}>
+          <Forecast
+            date={this.state.date2}
+            temp={this.state.temp2}
+            type={this.state.type2}
+          />
+          <Forecast
+            date={this.state.date3}
+            temp={this.state.temp3}
+            type={this.state.type3}
+          />
+          <Forecast
+            date={this.state.date4}
+            temp={this.state.temp4}
+            type={this.state.type4}
+          />
+          <Forecast
+            date={this.state.date5}
+            temp={this.state.temp5}
+            type={this.state.type5}
+          />
+        </div>
       </div>
     );
   }
