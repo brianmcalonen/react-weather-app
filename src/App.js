@@ -99,10 +99,10 @@ class App extends Component {
     };
     return (
       <div>
-        <Titles />
+        <Titles getLocation={this.getLocation} getWeather={this.getWeather} />
         <Weather
-          getLocation={this.getLocation}
-          getWeather={this.getWeather}
+          // getLocation={this.getLocation}
+          // getWeather={this.getWeather}
           date={this.state.date}
           latitude={this.state.latitude}
           longitude={this.state.longitude}

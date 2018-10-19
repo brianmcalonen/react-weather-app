@@ -6,7 +6,7 @@ class Weather extends React.Component {
       boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
       transition: "0.3s",
       borderRadius: "5px",
-      width: "94%",
+      width: "74%",
       height: "350px",
       margin: "0 auto",
       marginBottom: "20px",
@@ -31,8 +31,8 @@ class Weather extends React.Component {
           mph
         </p>
 
-        <button onClick={this.props.getLocation}>Current Location</button>
-        <button onClick={this.props.getWeather}>Get Weather</button>
+        {/* <button onClick={this.props.getLocation}>Current Location</button>
+        <button onClick={this.props.getWeather}>Get Weather</button> */}
       </div>
     );
   }
