@@ -17,7 +17,7 @@ class Titles extends React.Component {
       <div style={titlesStyle}>
         <h1>React Weather App</h1>
         <p>Find your local conditions</p>
-        <button
+        {/* <button
           onClick={this.props.getLocation}
           type="button"
           class="btn btn-primary"
@@ -26,7 +26,7 @@ class Titles extends React.Component {
         </button>
         <button onClick={this.props.getWeather} class="btn btn-primary">
           Get Weather
-        </button>
+        </button> */}
       </div>
     );
   }

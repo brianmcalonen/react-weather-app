@@ -37,7 +37,7 @@ class App extends Component {
   };
 
   getLocation = async e => {
-    e.preventDefault();
+    // e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.setState({
@@ -53,7 +53,7 @@ class App extends Component {
   };
 
   getWeather = async e => {
-    e.preventDefault();
+    // e.preventDefault();
     const apiCall = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${
         this.state.latitude
@@ -92,18 +92,30 @@ class App extends Component {
     });
   };
 
+  componentWillMount() {
+    this.getLocation();
+  }
+  componentDidUpdate() {
+    this.getWeather();
+  }
+
   render() {
     const containerStyle = {
       display: "flex",
       justifyContent: "space-between"
     };
+
+    var options = { weekday: "long", month: "long", day: "numeric" };
+    var today = new Date();
+    today = today.toLocaleDateString("en-US", options);
+
     return (
       <div>
         <Titles getLocation={this.getLocation} getWeather={this.getWeather} />
         <Weather
           // getLocation={this.getLocation}
           // getWeather={this.getWeather}
-          date={this.state.date}
+          date={today}
           latitude={this.state.latitude}
           longitude={this.state.longitude}
           city={this.state.city}
