@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Titles from "./components/Titles";
 import Weather from "./components/Weather";
-import Forecast from "./components/Forecast";
+import Screen from "./components/Screen";
 
 const apiKey = "02ee64e1f88918399ceccdea9f8b543b";
 
@@ -81,14 +81,14 @@ class App extends Component {
       temp2: data.list[16].main.temp_max,
       temp3: data.list[24].main.temp_max,
       temp4: data.list[32].main.temp_max,
-      temp5: data.list[39].main.temp_max,
+      temp5: data.list[37].main.temp_max,
 
       type: data.list[0].weather[0].main,
       type1: data.list[8].weather[0].main,
       type2: data.list[16].weather[0].main,
       type3: data.list[24].weather[0].main,
       type4: data.list[32].weather[0].main,
-      type5: data.list[39].weather[0].main
+      type5: data.list[37].weather[0].main
     });
   };
 
@@ -105,51 +105,41 @@ class App extends Component {
       justifyContent: "space-between"
     };
 
+    const appBg = {
+      background: "darkgrey",
+      height: "600px",
+      width: "400px",
+      margin: "0 auto"
+    };
+
     var options = { weekday: "long", month: "long", day: "numeric" };
     var today = new Date();
     today = today.toLocaleDateString("en-US", options);
 
     return (
       <div>
-        <Titles getLocation={this.getLocation} getWeather={this.getWeather} />
-        <Weather
-          // getLocation={this.getLocation}
-          // getWeather={this.getWeather}
+        <i class="wi wi-day-lightning" />
+        <Screen
+          style={appBg}
           date={today}
-          latitude={this.state.latitude}
-          longitude={this.state.longitude}
           city={this.state.city}
           temp={this.state.temp}
           type={this.state.type}
           humidity={this.state.humidity}
           wind={this.state.wind}
+          date2={this.state.date2}
+          temp2={this.state.temp2}
+          type2={this.state.type2}
+          date3={this.state.date3}
+          temp3={this.state.temp3}
+          type3={this.state.type3}
+          date4={this.state.date4}
+          temp4={this.state.temp4}
+          type4={this.state.type4}
+          date5={this.state.date5}
+          temp5={this.state.temp5}
+          type5={this.state.type5}
         />
-        {/* <Forecast
-          date={this.state.date1}
-          temp={this.state.temp1}
-          type={this.state.type1} /> */}
-        <div className="container" style={containerStyle}>
-          <Forecast
-            date={this.state.date2}
-            temp={this.state.temp2}
-            type={this.state.type2}
-          />
-          <Forecast
-            date={this.state.date3}
-            temp={this.state.temp3}
-            type={this.state.type3}
-          />
-          <Forecast
-            date={this.state.date4}
-            temp={this.state.temp4}
-            type={this.state.type4}
-          />
-          <Forecast
-            date={this.state.date5}
-            temp={this.state.temp5}
-            type={this.state.type5}
-          />
-        </div>
       </div>
     );
   }
